@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ba1qplmqc6o7h"
-path="res://.godot/imported/MAGE.png-c0ed8f1e9740af8d345233ff1159e55d.ctex"
+path="res://.godot/imported/MAGE.png-6e3944898c6ea7803b74370eca43db0e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Wizard/MAGE.png"
-dest_files=["res://.godot/imported/MAGE.png-c0ed8f1e9740af8d345233ff1159e55d.ctex"]
+source_file="res://Character/MAGE.png"
+dest_files=["res://.godot/imported/MAGE.png-6e3944898c6ea7803b74370eca43db0e.ctex"]
 
 [params]
 

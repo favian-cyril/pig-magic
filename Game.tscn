@@ -1,15 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://cq5ymqyvg41q4"]
 
-[ext_resource type="PackedScene" uid="uid://ds0oqbt1wwvav" path="res://Player.tscn" id="1_6rdbq"]
-[ext_resource type="Script" path="res://Game.gd" id="1_qts4j"]
+[ext_resource type="PackedScene" uid="uid://ds0oqbt1wwvav" path="res://Character/Player.tscn" id="1_6rdbq"]
+[ext_resource type="Script" path="res://Game.gd" id="1_y81p4"]
 [ext_resource type="PackedScene" uid="uid://bg4jofpm12s43" path="res://TileMap.tscn" id="2_f0p4n"]
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_qts4j")
+script = ExtResource("1_y81p4")
 
 [node name="Player" parent="." instance=ExtResource("1_6rdbq")]
 z_index = 1
-position = Vector2(61, 192)
+position = Vector2(61, 215)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(1, -54)
@@ -19,6 +19,5 @@ position_smoothing_enabled = true
 [node name="TileMap" parent="." instance=ExtResource("2_f0p4n")]
 position = Vector2(1, 1)
 
-[node name="SpellTimer" type="Timer" parent="."]
-wait_time = 0.504
-one_shot = true
+[connection signal="pause" from="Player" to="." method="_on_player_pause"]
+[connection signal="projectile" from="Player" to="." method="_on_player_projectile"]

@@ -6,9 +6,6 @@ extends Area2D
 # Direction of the projectile
 var velocity = Vector2.ZERO
 
-func _ready():
-	pass
-
 func _process(delta):
 	# Move the projectile in the direction of velocity
 	if velocity:

@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbqnjsp81tcrn"]
+
+[ext_resource type="Script" path="res://Node2D.gd" id="1_mtai4"]
+[ext_resource type="Theme" uid="uid://c2lk5b0nnxggd" path="res://FontTheme.tres" id="2_m6rvv"]
+[ext_resource type="Script" path="res://Tree.gd" id="3_1rguh"]
+
+[node name="SpellCreateUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_mtai4")
+
+[node name="VerbSelect" type="ItemList" parent="."]
+visible = false
+offset_right = 83.0
+offset_bottom = 48.0
+theme = ExtResource("2_m6rvv")
+allow_search = false
+auto_height = true
+item_count = 1
+item_0/text = "Cast"
+
+[node name="AdjectiveSelect" type="ItemList" parent="."]
+visible = false
+offset_left = 85.0
+offset_right = 230.0
+offset_bottom = 88.0
+theme = ExtResource("2_m6rvv")
+allow_search = false
+auto_height = true
+item_count = 2
+item_0/text = "Ball of"
+item_1/text = "Big ball of"
+
+[node name="NounSelect" type="ItemList" parent="."]
+visible = false
+offset_left = 232.0
+offset_right = 314.0
+offset_bottom = 46.0
+theme = ExtResource("2_m6rvv")
+auto_height = true
+item_count = 3
+item_0/text = "Fire"
+item_1/text = "Ice"
+item_2/text = "Earth"
+
+[node name="Tree" type="Tree" parent="."]
+layout_mode = 0
+offset_right = 189.0
+offset_bottom = 133.0
+hide_root = true
+select_mode = 1
+scroll_vertical_enabled = false
+script = ExtResource("3_1rguh")
