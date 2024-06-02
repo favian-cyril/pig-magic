@@ -14,15 +14,16 @@ func traverse(index: int) -> SpellTreeNode:
 	_traverseIndex.append(index)
 	_currentNode = _currentNode.get_children()[index]
 	return _currentNode
-	
-func reverse() -> SpellTreeNode:
-	_traverseIndex.pop_back()
+
+func reverse() -> int:
 	if (_traverseIndex.size() == 0):
-		return null
-	var lastNode
-	for index in _traverseIndex:
-		lastNode = traverse(index)
-	return lastNode
+		return 0
+	var lastIndex = _traverseIndex.pop_back()
+	_currentNode = _root
+	for i in _traverseIndex:
+		if (!_currentNode.is_child_empty()):
+			_currentNode = _currentNode.get_children()[i]
+	return lastIndex
 	
 func get_indexes() -> Array[int]:
 	return _traverseIndex

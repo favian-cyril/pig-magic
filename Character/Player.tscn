@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ds0oqbt1wwvav"]
+[gd_scene load_steps=32 format=3 uid="uid://ds0oqbt1wwvav"]
 
 [ext_resource type="Texture2D" uid="uid://ba1qplmqc6o7h" path="res://Character/MAGE.png" id="1_avrxw"]
 [ext_resource type="Script" path="res://Character/Player.gd" id="1_dswps"]
@@ -160,6 +160,8 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1sc8m"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_atpme"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_sm83j"]
 states/Start/position = Vector2(200, 100.123)
 states/cast/node = SubResource("AnimationNodeAnimation_ceh1u")
@@ -170,8 +172,8 @@ states/jump/node = SubResource("AnimationNodeAnimation_yvqqj")
 states/jump/position = Vector2(557.444, 173.785)
 states/move/node = SubResource("AnimationNodeBlendSpace1D_oe7ym")
 states/move/position = Vector2(362, 99.851)
-transitions = ["move", "jump", SubResource("AnimationNodeStateMachineTransition_q7g36"), "Start", "move", SubResource("AnimationNodeStateMachineTransition_ixvfi"), "jump", "move", SubResource("AnimationNodeStateMachineTransition_8dlca"), "move", "create_spell", SubResource("AnimationNodeStateMachineTransition_17j21"), "create_spell", "cast", SubResource("AnimationNodeStateMachineTransition_xkbm6"), "cast", "move", SubResource("AnimationNodeStateMachineTransition_1sc8m")]
-graph_offset = Vector2(66, -21.755)
+transitions = ["move", "jump", SubResource("AnimationNodeStateMachineTransition_q7g36"), "Start", "move", SubResource("AnimationNodeStateMachineTransition_ixvfi"), "jump", "move", SubResource("AnimationNodeStateMachineTransition_8dlca"), "move", "create_spell", SubResource("AnimationNodeStateMachineTransition_17j21"), "create_spell", "cast", SubResource("AnimationNodeStateMachineTransition_xkbm6"), "cast", "move", SubResource("AnimationNodeStateMachineTransition_1sc8m"), "create_spell", "move", SubResource("AnimationNodeStateMachineTransition_atpme")]
+graph_offset = Vector2(40.2, -48.8975)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_machine")]
 collision_layer = 2
@@ -210,17 +212,19 @@ script = ExtResource("4_u5lq5")
 jump_state = NodePath("../Jump")
 create_spell_state = NodePath("../CreateSpell")
 
-[node name="Jump" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("idle_state")]
+[node name="Jump" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("idle_state", "create_spell_state")]
 script = ExtResource("5_udwls")
 idle_state = NodePath("../Idle")
+create_spell_state = NodePath("../CreateSpell")
 
 [node name="Cast" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("6_y2j7e")
 idle_state = NodePath("../Idle")
 
-[node name="CreateSpell" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("cast_state")]
+[node name="CreateSpell" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("cast_state", "idle_state")]
 script = ExtResource("7_6v4fu")
 cast_state = NodePath("../Cast")
+idle_state = NodePath("../Idle")
 
 [node name="Label" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 offset_left = -39.0

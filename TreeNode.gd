@@ -1,7 +1,6 @@
 class_name SpellTreeNode
 
 var _spellName: String
-# var metadata
 var _children: Array[SpellTreeNode]
 
 func _init(name: String = '', child: Array[SpellTreeNode] = []):

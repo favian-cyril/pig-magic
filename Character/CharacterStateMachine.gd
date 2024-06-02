@@ -20,8 +20,10 @@ func _physics_process(delta):
 	if (current_state.next_state != null):
 		switch_states(current_state.next_state)
 	current_state.state_process(delta)
-	# Gravity should apply to all states
-	if not character.is_on_floor():
+	# Gravity should apply to all states but freeze on CreateSpell
+	if current_state.name == 'CreateSpell':
+		character.velocity.y = 0
+	elif not character.is_on_floor():
 		character.velocity.y += gravity * delta
 
 func switch_states(state: State):
