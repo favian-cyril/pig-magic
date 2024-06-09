@@ -1,5 +1,5 @@
 extends Control
-
+signal spell_created(spell_components)
 const VERBS = ['Cast', 'Conjure']
 const ADJECTIVES = ['Ball of', 'Big Ball of']
 const NOUNS_BALL = ['Fire', 'Ice', 'Earth']
@@ -26,6 +26,7 @@ func _ready():
 
 func _input(event: InputEvent):
 	var selected = itemListArray[-1]
+	var isEdge = tree.get_current_node().get_children()[0].is_child_empty();
 	if (event.is_action_pressed("ui_up")):
 		if (currentIndex > 0):
 			currentIndex -= 1
@@ -34,18 +35,20 @@ func _input(event: InputEvent):
 		if (currentIndex < selected.item_count - 1):
 			currentIndex += 1
 			selected.select(currentIndex)
-	elif (event.is_action_pressed("ui_right")):
-		if (!tree.get_current_node().get_children()[0].is_child_empty()):
+	elif (event.is_action_pressed("ui_right") or event.is_action_pressed("ui_accept")):
+		if (!isEdge):
 			var currentNode = tree.traverse(currentIndex)
 			currentIndex = 0
 			generate_new_list(currentNode.get_children_spells())
+		else:
+			spell_created.emit(itemListArray)
+			queue_free()
 	elif (event.is_action_pressed("ui_left")):
 		if (itemListArray.size() > 1):
 			ui_length -= selected.size.x + 5
 			selected.queue_free()
 			itemListArray.pop_back()
 			currentIndex = tree.reverse()
-			
 
 func generate_new_list(items: Array[String]):
 	var NewList = ItemList.new()
